@@ -1,0 +1,36 @@
+---
+- name: Deploy Django application
+  hosts: all
+  gather_facts: no
+  roles:
+    - cdk_role
+  tasks:
+    - name: Deploy Django app in dev
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_django_app/dev"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_dev"
+
+    - name: Deploy Django app in qa
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_django_app/qa"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_qa"
+
+    - name: Deploy Django app in preprod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_django_app/preprod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_preprod"
+
+    - name: Deploy Django app in prod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_django_app/prod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_prod"
+
+    - name: Deploy Django app in training
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_django_app/training"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_training"

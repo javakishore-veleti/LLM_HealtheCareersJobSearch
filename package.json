@@ -1,0 +1,40 @@
+{
+    "name": "llm_healthcareers_jobsearch",
+    "version": "1.0.0",
+    "description": "A reference business application for healthcare job search, leveraging Generative AI.",
+    "main": "index.js",
+    "scripts": {
+      "infra:dev": "AWS_PROFILE=llm_search_jobs_app_dev ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/create_infrastructure.yml --extra-vars 'terraform_directory=infrastructure/terraform_configs/dev_qa_preprod'",
+      "infra:qa": "AWS_PROFILE=llm_search_jobs_app_qa ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/create_infrastructure.yml --extra-vars 'terraform_directory=infrastructure/terraform_configs/dev_qa_preprod'",
+      "infra:preprod": "AWS_PROFILE=llm_search_jobs_app_preprod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/create_infrastructure.yml --extra-vars 'terraform_directory=infrastructure/terraform_configs/dev_qa_preprod'",
+      "infra:prod": "AWS_PROFILE=llm_search_jobs_app_prod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/create_infrastructure.yml --extra-vars 'terraform_directory=infrastructure/terraform_configs/prod'",
+      "infra:training": "AWS_PROFILE=llm_search_jobs_app_training ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/create_infrastructure.yml --extra-vars 'terraform_directory=infrastructure/terraform_configs/training'",
+      "deploy:dotnet:dev": "AWS_PROFILE=llm_search_jobs_app_dev ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_dotnet_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_dotnet_app/dev'",
+      "deploy:dotnet:qa": "AWS_PROFILE=llm_search_jobs_app_qa ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_dotnet_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_dotnet_app/qa'",
+      "deploy:dotnet:preprod": "AWS_PROFILE=llm_search_jobs_app_preprod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_dotnet_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_dotnet_app/preprod'",
+      "deploy:dotnet:prod": "AWS_PROFILE=llm_search_jobs_app_prod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_dotnet_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_dotnet_app/prod'",
+      "deploy:dotnet:training": "AWS_PROFILE=llm_search_jobs_app_training ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_dotnet_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_dotnet_app/training'",
+      "deploy:django:dev": "AWS_PROFILE=llm_search_jobs_app_dev ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_django_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_django_app/dev'",
+      "deploy:django:qa": "AWS_PROFILE=llm_search_jobs_app_qa ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_django_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_django_app/qa'",
+      "deploy:django:preprod": "AWS_PROFILE=llm_search_jobs_app_preprod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_django_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_django_app/preprod'",
+      "deploy:django:prod": "AWS_PROFILE=llm_search_jobs_app_prod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_django_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_django_app/prod'",
+      "deploy:django:training": "AWS_PROFILE=llm_search_jobs_app_training ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_django_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_django_app/training'",
+      "deploy:java:dev": "AWS_PROFILE=llm_search_jobs_app_dev ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_java_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_java_app/dev'",
+      "deploy:java:qa": "AWS_PROFILE=llm_search_jobs_app_qa ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_java_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_java_app/qa'",
+      "deploy:java:preprod": "AWS_PROFILE=llm_search_jobs_app_preprod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_java_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_java_app/preprod'",
+      "deploy:java:prod": "AWS_PROFILE=llm_search_jobs_app_prod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_java_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_java_app/prod'",
+      "deploy:java:training": "AWS_PROFILE=llm_search_jobs_app_training ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_java_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_java_app/training'",
+      "deploy:nodejs:dev": "AWS_PROFILE=llm_search_jobs_app_dev ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_nodejs_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_nodejs_app/dev'",
+      "deploy:nodejs:qa": "AWS_PROFILE=llm_search_jobs_app_qa ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_nodejs_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_nodejs_app/qa'",
+      "deploy:nodejs:preprod": "AWS_PROFILE=llm_search_jobs_app_preprod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_nodejs_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_nodejs_app/preprod'",
+      "deploy:nodejs:prod": "AWS_PROFILE=llm_search_jobs_app_prod ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_nodejs_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_nodejs_app/prod'",
+      "deploy:nodejs:training": "AWS_PROFILE=llm_search_jobs_app_training ansible-playbook -i aws_ec2_inventory.py infrastructure/ansible_playbooks/playbooks/deploy_nodejs_app.yml --extra-vars 'cdk_directory=infrastructure/apps/search_jobs_nodejs_app/training'"
+    },
+    "dependencies": {
+      "aws-cdk": "^2.0.0"
+    },
+    "devDependencies": {
+      "aws-cdk": "^2.0.0"
+    }
+  }
+  

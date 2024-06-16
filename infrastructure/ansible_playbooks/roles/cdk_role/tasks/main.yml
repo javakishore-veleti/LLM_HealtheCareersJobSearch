@@ -1,0 +1,15 @@
+---
+- name: Install CDK dependencies
+  command: npm install
+  args:
+    chdir: "{{ cdk_directory }}"
+
+- name: Bootstrap CDK
+  command: cdk bootstrap
+  args:
+    chdir: "{{ cdk_directory }}"
+
+- name: Deploy CDK stack
+  command: cdk deploy
+  args:
+    chdir: "{{ cdk_directory }}"

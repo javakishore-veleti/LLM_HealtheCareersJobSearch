@@ -1,0 +1,36 @@
+---
+- name: Deploy Data Generator
+  hosts: all
+  gather_facts: no
+  roles:
+    - cdk_role
+  tasks:
+    - name: Deploy Data Generator in dev
+      command: cdk deploy
+      args:
+        chdir: "../../apps/data_generator/dev"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_dev"
+
+    - name: Deploy Data Generator in qa
+      command: cdk deploy
+      args:
+        chdir: "../../apps/data_generator/qa"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_qa"
+
+    - name: Deploy Data Generator in preprod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/data_generator/preprod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_preprod"
+
+    - name: Deploy Data Generator in prod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/data_generator/prod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_prod"
+
+    - name: Deploy Data Generator in training
+      command: cdk deploy
+      args:
+        chdir: "../../apps/data_generator/training"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_training"

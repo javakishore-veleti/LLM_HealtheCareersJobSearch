@@ -1,0 +1,10 @@
+---
+- name: Initialize Terraform
+  command: terraform init
+  args:
+    chdir: "{{ terraform_directory }}"
+
+- name: Apply Terraform configuration
+  command: terraform apply -auto-approve
+  args:
+    chdir: "{{ terraform_directory }}"

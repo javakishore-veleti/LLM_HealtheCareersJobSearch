@@ -1,0 +1,36 @@
+---
+- name: Deploy Datalake Analytics
+  hosts: all
+  gather_facts: no
+  roles:
+    - cdk_role
+  tasks:
+    - name: Deploy Datalake Analytics in dev
+      command: cdk deploy
+      args:
+        chdir: "../../apps/datalake_analytics/dev"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_dev"
+
+    - name: Deploy Datalake Analytics in qa
+      command: cdk deploy
+      args:
+        chdir: "../../apps/datalake_analytics/qa"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_qa"
+
+    - name: Deploy Datalake Analytics in preprod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/datalake_analytics/preprod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_preprod"
+
+    - name: Deploy Datalake Analytics in prod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/datalake_analytics/prod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_prod"
+
+    - name: Deploy Datalake Analytics in training
+      command: cdk deploy
+      args:
+        chdir: "../../apps/datalake_analytics/training"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_training"

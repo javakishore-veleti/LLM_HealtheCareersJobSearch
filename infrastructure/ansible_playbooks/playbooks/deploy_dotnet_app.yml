@@ -1,0 +1,36 @@
+---
+- name: Deploy .NET application
+  hosts: all
+  gather_facts: no
+  roles:
+    - cdk_role
+  tasks:
+    - name: Deploy .NET app in dev
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_dotnet_app/dev"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_dev"
+
+    - name: Deploy .NET app in qa
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_dotnet_app/qa"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_qa"
+
+    - name: Deploy .NET app in preprod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_dotnet_app/preprod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_preprod"
+
+    - name: Deploy .NET app in prod
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_dotnet_app/prod"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_prod"
+
+    - name: Deploy .NET app in training
+      command: cdk deploy
+      args:
+        chdir: "../../apps/search_jobs_dotnet_app/training"
+      when: ansible_env.AWS_PROFILE == "llm_search_jobs_app_training"

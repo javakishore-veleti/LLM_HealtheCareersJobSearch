@@ -1,0 +1,6 @@
+---
+- name: Create infrastructure using Terraform
+  hosts: all
+  gather_facts: no
+  roles:
+    - terraform_role
